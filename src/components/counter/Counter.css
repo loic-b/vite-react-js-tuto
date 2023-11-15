@@ -5,7 +5,3 @@ span {
 button:disabled {
   background-color: #2a2a2a;
 }
-
-button:hover {
-  border-color: #323880;
-}
