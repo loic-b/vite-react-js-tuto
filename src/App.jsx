@@ -1,10 +1,10 @@
 import './App.css'
 import Counter from './components/counter/Counter'
+import SimpleTodos from './components/todos/SimpleTodos'
 // eslint-disable-next-line no-unused-vars
 import React from 'react'
 import PropTypes from "prop-types";
 
-const todos = ['see', 'think', 'say']
 function App() {
   const handleClick = (e) => {
     e.preventDefault()
@@ -19,9 +19,7 @@ function App() {
 
       <div className="card"><Counter /></div>
 
-      <ul>
-        {todos.map(todo => (<li key={todo}>{todo}</li>))}
-      </ul>
+      <SimpleTodos />
 
       <LogProps textColor="red" />
       <LogDestruct textColor="darkcyan" />
