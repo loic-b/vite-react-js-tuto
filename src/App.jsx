@@ -2,8 +2,9 @@ import './App.css'
 import Counter from './components/counter/Counter'
 // eslint-disable-next-line no-unused-vars
 import React from 'react'
+import PropTypes from "prop-types";
 
-const todos = ['see','think','say']
+const todos = ['see', 'think', 'say']
 function App() {
   const handleClick = (e) => {
     e.preventDefault()
@@ -14,7 +15,7 @@ function App() {
   }
   return (
     <>
-      <h1 onClick={handleClick} style={{color: 'indianRed'}}>Vite + React JS + SWC</h1>
+      <h1 onClick={handleClick} style={{ color: 'indianRed' }}>Vite + React JS + SWC</h1>
 
       <div className="card"><Counter /></div>
 
@@ -22,32 +23,38 @@ function App() {
         {todos.map(todo => (<li key={todo}>{todo}</li>))}
       </ul>
 
-      <LogProps textColor="red"/>
+      <LogProps textColor="red" />
       <LogDestruct textColor="darkcyan" />
       <Parent>This is a <strong>child</strong> text</Parent>
-      <X textColor="chocolate" id="x-id" className="x-class" data-log-level="info"></X>
+      <TransferHtmlProps textColor="chocolate" id="x-id" className="x-class" data-log-level="info"></TransferHtmlProps>
     </>
   )
 }
+
+// remove '...' is missing in props validation
+LogDestruct.propTypes = { textColor: PropTypes.node.isRequired }
+Parent.propTypes = { children: PropTypes.node.isRequired }
+TransferHtmlProps.propTypes = { textColor: PropTypes.node.isRequired }
+
 
 function LogProps(props) {
   console.log('show props object', props)
   return null
 }
 
-function LogDestruct({textColor}) {
+function LogDestruct({ textColor }) {
   console.log('show destructured props "text color"=', textColor)
-  return <p style={{color: textColor}}>destructured prop</p>
+  return <p style={{ color: textColor }}>destructured prop</p>
 }
 
-function Parent({children}) {
+function Parent({ children }) {
   // console.log('show props object + children', props, children)
   return <div>{children}</div>
 }
 
-function X({textColor, ...props}) {
+function TransferHtmlProps({ textColor, ...props }) {
   console.log('show text colors + destructured prop', textColor, props)
-  return <div style={{color: textColor}} {...props}>Transfered attributes</div>
+  return <div style={{ color: textColor }} {...props}>Transfered attributes</div>
 }
 
 export default App
