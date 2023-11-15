@@ -25,7 +25,7 @@ function App() {
       <LogProps textColor="red"/>
       <LogDestruct textColor="darkcyan" />
       <Parent>This is a <strong>child</strong> text</Parent>
-      <X textColor="blue" id="x-id" className="x-class"></X>
+      <X textColor="chocolate" id="x-id" className="x-class" data-log-level="info"></X>
     </>
   )
 }
@@ -47,7 +47,7 @@ function Parent({children}) {
 
 function X({textColor, ...props}) {
   console.log('show text colors + destructured prop', textColor, props)
-  return <div {...props}>Transfered attributes</div>
+  return <div style={{color: textColor}} {...props}>Transfered attributes</div>
 }
 
 export default App
